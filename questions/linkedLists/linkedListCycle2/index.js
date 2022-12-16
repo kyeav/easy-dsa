@@ -10,16 +10,18 @@
  *
  */
 
+// floyd's algorithm
 const listCycle = (head) => {
-  const set = new Set();
-  let curr = head;
+  let slow = head;
+  let fast = head;
 
-  while (curr) {
-    if (set.has(curr)) {
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
       return true;
     }
-    set.add(curr);
-    curr = curr.next;
   }
 
   return false;
